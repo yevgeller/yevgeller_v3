@@ -19,4 +19,11 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: black;
+  color:forestgreen;
 }
+
+/*.navbar-nav {
+    background-color: black;
+    color: forestgreen;
+}*/
