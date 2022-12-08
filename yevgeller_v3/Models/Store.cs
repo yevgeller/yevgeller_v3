@@ -31,7 +31,7 @@ namespace yevgeller_v3.Models
         public List<Article> GetArticlesByCategory(string category) => 
             articles.Where(x => x.Category.ToLower() == category.ToLower().Trim()).ToList();
 
-        public List<string> GetDistinctCategories() => articles.Select(x=>x.Category).Distinct();
+        public List<string> GetDistinctCategories() => articles.Select(x=>x.Category).Distinct().ToList();
     }
 }
 
