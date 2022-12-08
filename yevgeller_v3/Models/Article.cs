@@ -15,6 +15,13 @@
             this.CategoryHeader = "Unset category header";
             this.Category = "Unset category";
         }
-    
+
+        public Article(string uRL, string description, string categoryHeader, string category)
+        {
+            URL = uRL;
+            Description = description;
+            CategoryHeader = categoryHeader;
+            Category = category;
+        }
     }
 }
