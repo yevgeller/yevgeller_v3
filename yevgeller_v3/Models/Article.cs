@@ -7,6 +7,7 @@
         //public Category CategoryName { get; set; } = new Category { Name = "Link"};
         public string CategoryHeader { get; set; } = "Links";
         public string Category { get; set; } = string.Empty;
+        public string Comment { get; set; } = string.Empty;
 
         public Article()
         {
