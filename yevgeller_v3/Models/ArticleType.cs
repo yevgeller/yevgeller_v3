@@ -1,6 +1,6 @@
 ﻿namespace yevgeller_v3.Models
 {
-    public enum ArticleTypeEnum
+    public enum ArticleType
     {
         Link,
         OnlineBook,

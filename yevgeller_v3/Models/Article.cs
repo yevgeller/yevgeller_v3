@@ -2,7 +2,9 @@
 {
     public class Article
     {
-        public string URL { get; set; }
-        public string Description { get; set; }
+        public string URL { get; set; } = "";
+        public string Description { get; set; } = "";
+        public Category CategoryName { get; set; } = new Category { Name = "Link"};
+
     }
 }
