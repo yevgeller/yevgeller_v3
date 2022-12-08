@@ -38,22 +38,15 @@
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        @foreach(string x in Models.Store.)
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Links">Links</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Articles">Articles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/LongReads">Long reads</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://yevgellerdesignpatterns.azurewebsites.net/Game1">Minesweeper</a>
-                        </li>
+                        @{
+                            var store = new Models.Store();
+                            foreach (string x in store.GetDistinctCategories())
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-page="/Links" asp-route-param="@x">| @x |</a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
 
