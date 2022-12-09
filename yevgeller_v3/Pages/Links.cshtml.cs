@@ -23,6 +23,7 @@ namespace yevgeller_v3.Pages
                 currentSelection = s.GetAllArticles();
             }
 
+            var j = 1;
         }
     }
 }

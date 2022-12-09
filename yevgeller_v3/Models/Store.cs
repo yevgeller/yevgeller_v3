@@ -7,15 +7,15 @@ namespace yevgeller_v3.Models
         private List<Article> articles = new List<Article>();
         private List<Category> categories = new List<Category>();
 
-        public List<Category> InitializeCategories()
-        {
-            List<Category> result = new List<Category>();
-            result.Add(new Category { Name = "Links" });
-            result.Add(new Category { Name = "Articles" });
-            result.Add(new Category { Name = "Long reads" });
-            result.Add(new Category { Name = "Products" });
-            return result;
-        }
+        //public List<Category> InitializeCategories()
+        //{
+        //    List<Category> result = new List<Category>();
+        //    result.Add(new Category { Name = "Links" });
+        //    result.Add(new Category { Name = "Articles" });
+        //    result.Add(new Category { Name = "Long reads" });
+        //    result.Add(new Category { Name = "Products" });
+        //    return result;
+        //}
 
         public Store()
         {
@@ -41,7 +41,7 @@ namespace yevgeller_v3.Models
 
             //Project Ideas
             articles.Add(new Article("#", "Design a lift system", "Project Ideas", "Project Ideas"));
-            articles.Add(new Article { URL = "#", Description = "Design a vending machine -- should accept 1, 5, 10, 25 cents, 1, 2 dollar note", CategoryHeader = "Project Ideas", Category = "Project Ideas", Comment = "Products: Candy(10), Snack (50), Nuts(90), Coke (25), Pepsi (35), Soda (45)" });
+            articles.Add(new Article { URL = "#", Description = "Design a vending machine -- should accept 1, 5, 10, 25 cents, 1, 2 dollar note", GroupHeader = "Project Ideas", Category = "Project Ideas", Comment = "Products: Candy(10), Snack (50), Nuts(90), Coke (25), Pepsi (35), Soda (45)" });
             articles.Add(new Article("#", "Design a traffic controller system for a junction", "Project Ideas", "Project Ideas"));
             
             //Old
@@ -56,6 +56,12 @@ namespace yevgeller_v3.Models
         public List<Article> GetAllArticles() => articles;
         public List<Article> GetArticlesByCategory(string category) => 
             articles.Where(x => x.Category.ToLower() == category.ToLower().Trim()).ToList();
+
+        public List<string> GetDistinctGroupHeaders(string category) => 
+            this.GetArticlesByCategory(category)
+            .Select(x => x.GroupHeader)
+            .Distinct()
+            .ToList();
 
         public List<string> GetDistinctCategories() => articles.Select(x=>x.Category).Distinct().ToList();
     }
