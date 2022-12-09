@@ -32,6 +32,12 @@ namespace yevgeller_v3.Models
             //Articles
             articles.Add(new Article("https://javascript.plainenglish.io/top-javascript-one-liners-will-make-you-a-superhero-af1363083354", "Useful One-liners", "JavaScript resources", "Articles"));
             articles.Add(new Article("https://deepu.tech/concurrency-in-modern-languages-js/", "Concurrency in JS", "JavaScript", "Articles"));
+            articles.Add(new Article("https://learn.microsoft.com/en-us/azure/app-service/quickstart-dotnetcore?tabs=net60&pivots=development-environment-vs", "Deploy an ASP.Net Web App", "Azure", "Articles"));
+
+            //Long reads
+            articles.Add(new Article("https://martinfowler.com/articles/evodb.html", "Evolutionary Database Design", "", "Long reads"));
+            articles.Add(new Article("http://craftinginterpreters.com/contents.html", "Crafting Interpreters", "", "Long reads"));
+            articles.Add(new Article("http://gameprogrammingpatterns.com/", "Game Programming Patterns", "", "Long reads"));
 
             //Project Ideas
             articles.Add(new Article("#", "Design a lift system", "Project Ideas", "Project Ideas"));
