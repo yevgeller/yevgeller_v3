@@ -1,0 +1,29 @@
+<div class="siteHeader">
+    <h2>My projects</h2>
+</div>
+
+<section class="content-wrapper main-content clear-fix">
+    <div ng-repeat="cat1 in cats" class="categoryHeader">
+        {{cat1}}
+        <div ng-repeat="proj in projects | filter:{category:cat1} | filter:search | orderBy:'name'">
+            <div class="projectInfo">
+                <div class="projectHeader">
+                    {{proj.name}}<span class="projectYears">{{' ('+proj.years+')'}}</span>
+                </div>
+                {{proj.descrshort}}
+                <a ng-href="#/project/{{proj.id}}">More</a>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="searchArea">
+        Search in projects:
+        <input ng-model="search" /><span id="searchQuery"><br />
+            Current filter: {{search}}</span>
+    </div>
+</section>
+<!--<form ng-submit="addTodo()">
+            <input type="text" ng-model="todoText" size="30"
+                placeholder="add new todo here">
+            <input class="btn-primary" type="submit" value="add">
+        </form>-->

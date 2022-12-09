@@ -1,0 +1,31 @@
+#mswpr {
+    border: 1px solid black;
+}
+
+table td {
+    border: 1px solid black;
+    width:25px;
+    height:25px;
+    text-align:center;
+    padding:0px;
+}
+
+td.br {
+    background-color: #ff0000;
+}
+
+td.by {
+    background-color: #ffd800;
+}
+
+td.bg {
+    background-color: #00ff00;
+}
+
+td.bw {
+    background-color: #ffffff;
+}
+
+td.bb {
+    background-color: #000000;
+}

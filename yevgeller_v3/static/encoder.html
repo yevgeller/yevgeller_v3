@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-44055144-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-44055144-1');
+    </script>
+    <meta charset="utf-8">
+    <title>Simple Text Encoder</title>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="yevgeller_v1_files/v1.css" type="text/css" />
+    <!--Used in accordance with MIT License-->
+    <script type="text/javascript" src="assets/xregexp-min.js"></script>
+    <!--Used in accordance with MIT License-->
+    <script type="text/javascript" src="assets/unicode-base.js"></script>
+    <script type="text/javascript" src="assets/encoder.js"></script>
+    <meta name="keywords" content="Yevgeniy Geller, Yevgeniy, Geller, programmer, consulting, c#, sql,wpf, javascript, europe, germany" />
+
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <p class="site-title" style="float: left"><a href="/">:)</a></p>
+            <div class="float-right">
+                <nav>
+                    <ul id="menu">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/Home/Contact">Contact</a></li>
+                        <li><a href="#">My projects</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </header>
+    <div id="body">
+        <div class="siteHeader">
+            <h2>Simple JavaScript encoder, maeks yuor txet inetnrtiseg to raed.</h2>
+        </div>
+        <section class="content-wrapper main-content clear-fix">
+            <label for="source">Paste plain text here:</label><br />
+            <textarea rows="5" cols="80" id="source"></textarea><br />
+            <button type="button" onclick="processString();">Submit</button>&nbsp;
+    <button type="button" onclick="clearValues();">Clear</button>
+            <br />
+            <br />
+            <label for="result">Result:</label><br />
+            <span id="result"></span>
+            <!--<br /><button type="button" onclick="copyToClipboard();">Copy to Clipboard</button>-->
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div style="float: left">
+                <p>&copy; 2013-2014 - yevgeller.net</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

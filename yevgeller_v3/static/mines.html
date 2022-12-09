@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-44055144-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-44055144-1');
+    </script>
+    <meta charset="utf-8">
+    <title>Mines game implemented with jQuery</title>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="yevgeller_v1_files/jquery.js"></script>
+    <link rel="stylesheet" href="yevgeller_v1_files/v1.css" type="text/css" />
+    <script src="assets/mines.js"></script>
+    <link rel="stylesheet" href="assets/mines.css" type="text/css" />
+    <meta name="keywords" content="Yevgeniy Geller, Yevgeniy, Geller, programmer, consulting, c#, sql,wpf, javascript, europe, germany" />
+</head>
+<body oncontextmenu="return false;">
+    <header>
+        <div class="content-wrapper">
+            <p class="site-title" style="float: left"><a href="/">:)</a></p>
+            <div class="float-right">
+                <nav>
+                    <ul id="menu">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/Home/Contact">Contact</a></li>
+                        <li><a href="#">My projects</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </header>
+    <div id="body">
+        <div class="siteHeader">
+            <h2>That mines game.</h2>
+        </div>
+        <section class="content-wrapper main-content clear-fix">
+            <div id="container" style="float: left">
+                <div id="action">
+                    <table id="mswpr">
+                    </table>
+                </div>
+                <span id="info"></span>
+                <br />
+                <input type="button" id="restart" value="Restart" />
+
+                <div id="timer"></div>
+            </div>
+            <div id="scores" style="float: right"></div>
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div style="float: left">
+                <p>&copy; 2013-2014 - yevgeller.net</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

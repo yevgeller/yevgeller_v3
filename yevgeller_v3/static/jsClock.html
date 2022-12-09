@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-44055144-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-44055144-1');
+    </script>
+    <meta charset="utf-8">
+    <title>JavaScript + Canvas = clock</title>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="yevgeller_v1_files/v1.css" type="text/css" />
+    <script src="assets/clock.js" type="text/javascript"></script>
+    <meta name="keywords" content="Yevgeniy Geller, Yevgeniy, Geller, programmer, consulting, c#, sql,wpf, javascript, europe, germany" />
+
+</head>
+<body oncontextmenu="return false;" onload="drawClock();">
+    <header>
+        <div class="content-wrapper">
+            <p class="site-title" style="float: left"><a href="/">:)</a></p>
+        </div>
+        <div class="float-right">
+            <nav>
+                <ul id="menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/Home/Contact">Contact</a></li>
+                    <li><a href="#">My projects</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="body">
+        <div class="siteHeader">
+            <h2>A clock using JavaScript and HTML5 canvas</h2>
+        </div>
+        <section class="content-wrapper main-content clear-fix">
+            <div id="container" style="float: left;position:relative;height:400px;">
+                The time is: <span id="time"></span>
+                <br />
+                <canvas id="clock" width="400" height="400" style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
+                <canvas id="hours" width="400" height="400" style="position: absolute; left: 0; top: 0; z-index: 2;">This is a drawing of a clock.</canvas>
+                <canvas id="minutes" width="400" height="400" style="position: absolute; left: 0; top: 0; z-index: 3;">This is a drawing of a clock.</canvas>
+                <canvas id="seconds" width="400" height="400" style="position: absolute; left: 0; top: 0; z-index: 4;">This is a drawing of a clock.</canvas>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div style="float: left">
+                <p>&copy; 2013-2014 - yevgeller.net</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

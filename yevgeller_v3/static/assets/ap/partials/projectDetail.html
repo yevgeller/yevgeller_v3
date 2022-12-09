@@ -1,0 +1,13 @@
+<div class="siteHeader">
+    <h2 class="title">{{unit.name}}</h2>
+</div>
+<section class="content-wrapper main-content clear-fix">
+    {{unit.descr}}
+    <p>
+        <a ng-href="{{unit.url}}">{{unit.linkwording}}</a>
+    </p>
+
+    <div ng-repeat="scr in screenShots | orderBy:scr">
+        <img ng-src="{{scr}}" />
+    </div>
+</section>
