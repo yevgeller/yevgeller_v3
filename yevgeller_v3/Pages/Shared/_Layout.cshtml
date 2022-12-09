@@ -43,7 +43,7 @@
                             foreach (string x in store.GetDistinctCategories())
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-page="/Links" asp-route-param="@x">| @x |</a>
+                                    <a class="nav-link" asp-page="/Links" asp-route-param="@x.ToLower()">| @x |</a>
                                 </li>
                             }
                         }

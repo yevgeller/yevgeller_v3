@@ -7,8 +7,9 @@ namespace yevgeller_v3.Pages
     {
         [FromQuery(Name = "param")]
         public string Param { get; set; }
-        public void OnGet()
+        public void OnGet(string param)
         {
+            Param = param;
         }
     }
 }
