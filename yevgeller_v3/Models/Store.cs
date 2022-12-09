@@ -53,6 +53,14 @@ namespace yevgeller_v3.Models
             articles.Add(new Article("https://justjavascript.com/", "Just JavaScript", "JavaScript", "Random"));
         }
 
+        public string GetProperlyCapitalizedCategoryName(string category)
+        {
+            var items = GetArticlesByCategory(category);
+            if (items.Count > 0) return items[0].Category;
+
+            return "No category";
+        }
+
         public List<Article> GetAllArticles() => articles;
         public List<Article> GetArticlesByCategory(string category) => 
             articles.Where(x => x.Category.ToLower() == category.ToLower().Trim()).ToList();

@@ -7,7 +7,13 @@ namespace yevgeller_v3.Pages
     public class LinksModel : PageModel
     {
         [FromQuery(Name = "param")]
-        public string Param { get; set; }
+        public string Param { get; set; } = string.Empty;
+        internal Store store;
+
+        public LinksModel()
+        {
+            this.store = new Store();
+        }
 
         List<Article> currentSelection = new List<Article>();
         public void OnGet(string param)
