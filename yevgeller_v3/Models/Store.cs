@@ -20,7 +20,7 @@ namespace yevgeller_v3.Models
         public Store()
         {
             //Links
-            articles.Add(new Article("https://yevgellerdesignpatterns.azurewebsites.net/", "My review of Software Design Patterns", "trunk", "Links" ));
+            articles.Add(new Article("https://yevgellerdesignpatterns.azurewebsites.net/", "My review of Software Design Patterns", "trunk", "Links"));
             articles.Add(new Article("https://yevgellerdesignpatterns.azurewebsites.net/Game1", "Mines game v2", "trunk", "Links"));
             articles.Add(new Article("https://github.com/rust-lang/rustlings", "Rustlings", "Rust resources", "Links"));
             articles.Add(new Article("https://nostarch.com/rust-programming-language-2nd-edition", "Rust book (No Starch Press)", "Rust resources", "Links"));
@@ -43,7 +43,7 @@ namespace yevgeller_v3.Models
             articles.Add(new Article("#", "Design a lift system", "Project Ideas", "Project Ideas"));
             articles.Add(new Article { URL = "#", Description = "Design a vending machine -- should accept 1, 5, 10, 25 cents, 1, 2 dollar note", GroupHeader = "Project Ideas", Category = "Project Ideas", Comment = "Products: Candy(10), Snack (50), Nuts(90), Coke (25), Pepsi (35), Soda (45)" });
             articles.Add(new Article("#", "Design a traffic controller system for a junction", "Project Ideas", "Project Ideas"));
-            
+
             //Old
             articles.Add(new Article("/static/encoder.html", "JS text encoder that prevents machine recognition", "Old", "Old"));
             articles.Add(new Article("/static/jsClock.html", "JS canvas clock", "Old", "Old"));
@@ -62,16 +62,28 @@ namespace yevgeller_v3.Models
         }
 
         public List<Article> GetAllArticles() => articles;
-        public List<Article> GetArticlesByCategory(string category) => 
+        public List<Article> GetArticlesByCategory(string category) =>
             articles.Where(x => x.Category.ToLower() == category.ToLower().Trim()).ToList();
 
-        public List<string> GetDistinctGroupHeaders(string category) => 
-            this.GetArticlesByCategory(category)
-            .Select(x => x.GroupHeader)
-            .Distinct()
-            .ToList();
+        public List<string> GetDistinctGroupHeaders(string category)
+        {
+            if (!string.IsNullOrWhiteSpace(category))
+            {
+                return this.GetArticlesByCategory(category)
+                .Select(x => x.GroupHeader)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToList();
+            }
 
-        public List<string> GetDistinctCategories() => articles.Select(x=>x.Category).Distinct().ToList();
+            return this.GetAllArticles()
+                .Select(x => x.GroupHeader)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToList();
+        }
+
+        public List<string> GetDistinctCategories() => articles.Select(x => x.Category).Distinct().ToList();
     }
 }
 
