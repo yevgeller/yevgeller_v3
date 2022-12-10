@@ -28,14 +28,18 @@ test
 <h5>JavaScript</h5>
 <a href="https://justjavascript.com/">Just JavaScript</a>*@
 
-here
 
 @Model.currentSelection.Count();
 <ul>
 @foreach(var a in Model.currentSelection) {
-        <span>a.URL</span>
+<span style="color:yellow">@a.URL</span>
+<br />
+<br />
+
+    <articl-as-list-item article="a"></articl-as-list-item>
+        @*<span>a.URL</span>
         @a.ConrolAsListItem();
         <br />
-        a.ControlAsString();
+        a.ControlAsString();*@
     }
 </ul>
