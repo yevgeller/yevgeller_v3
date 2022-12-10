@@ -15,7 +15,7 @@ namespace yevgeller_v3.Pages
             this.store = new Store();
         }
 
-        List<Article> currentSelection = new List<Article>();
+       internal List<Article> currentSelection = new List<Article>();
         public void OnGet(string param)
         {
             Param = param;
@@ -29,7 +29,6 @@ namespace yevgeller_v3.Pages
                 currentSelection = s.GetAllArticles();
             }
 
-            var j = 1;
         }
     }
 }

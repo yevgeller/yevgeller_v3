@@ -29,7 +29,7 @@
         {
             if(this.URL != null && this.URL.Length > 0) //anchor tag
             {
-                return $"<a href={this.URL}>{this.Description}</a>";
+                return $"Control: <a href={this.URL}>{this.Description}</a>";
 
             }
 
@@ -39,6 +39,11 @@
         public string ConrolAsListItem()
         {
             return $"<li>{this.Control()}</li>";
+        }
+
+        public string ControlAsString()
+        {
+            return $"URL: {this.URL}";
         }
     }
 }

@@ -5,7 +5,7 @@
 
 <h1>@Model.store.GetProperlyCapitalizedCategoryName(Model.Param)</h1>
 
-<h3>My stuff</h3>
+@*<h3>My stuff</h3>
 <ul>
     <li><a href="https://yevgellerdesignpatterns.azurewebsites.net/Game1">Minesweeper</a></li>
     <li><a href="https://yevgellerdesignpatterns.azurewebsites.net/">Software Design patterns</a></li>
@@ -26,4 +26,16 @@ test
 <a href="https://adventofcode.com/">Advent of Code</a>
 
 <h5>JavaScript</h5>
-<a href="https://justjavascript.com/">Just JavaScript</a>
+<a href="https://justjavascript.com/">Just JavaScript</a>*@
+
+here
+
+@Model.currentSelection.Count();
+<ul>
+@foreach(var a in Model.currentSelection) {
+        <span>a.URL</span>
+        @a.ConrolAsListItem();
+        <br />
+        a.ControlAsString();
+    }
+</ul>
