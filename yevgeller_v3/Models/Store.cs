@@ -63,7 +63,7 @@ namespace yevgeller_v3.Models
 
         public List<Article> GetAllArticles() => articles;
         public List<Article> GetArticlesByCategory(string category) =>
-            articles.Where(x => x.Category.ToLower() == category.ToLower().Trim()).ToList();
+            articles.Where(x => category == null || x.Category.ToLower() == category.ToLower().Trim()).ToList();
 
         public List<string> GetDistinctGroupHeaders(string category)
         {
