@@ -14,8 +14,28 @@
     <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
+    <nav id="navbar-example2" class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link" href="#fat">@@fat</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#mdo">@@mdo</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#one">one</a>
+                    <a class="dropdown-item" href="#two">two</a>
+                    <div role="separator" class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#three">three</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
     <header>
-       @* <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">Home Page</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -28,7 +48,7 @@
                             <a class="nav-link" href="#">Link here</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Dropdown
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -58,9 +78,9 @@
                 </div>
 
             </div>
-        </nav>*@
+        </nav>
         <div class="dropdown">
-            <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+            <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown">
                 Link
                 <span class="caret"></span>
             </a>
