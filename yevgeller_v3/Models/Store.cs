@@ -34,10 +34,10 @@ namespace yevgeller_v3.Models
             articles.Add(new Article("#", "Design a traffic controller system for a junction", "Project Ideas", "Project Ideas"));
 
             //Old
-            articles.Add(new Article("/static/encoder.html", "JS text encoder that prevents machine recognition", "Old", "Old"));
-            articles.Add(new Article("/static/jsClock.html", "JS canvas clock", "Old", "Old"));
-            articles.Add(new Article("/static/mines.html", "Minesweeper v1", "Old", "Old"));
-            articles.Add(new Article("/static/yevgeller_v1.html", "List of old projects", "Old", "Old"));
+            articles.Add(new Article("/s/encoder.html", "JS text encoder that prevents machine recognition", "Old", "Old"));
+            articles.Add(new Article("/s/jsClock.html", "JS canvas clock", "Old", "Old"));
+            articles.Add(new Article("/s/mines.html", "Minesweeper v1", "Old", "Old"));
+            articles.Add(new Article("/s/yevgeller_v1.html", "List of old projects", "Old", "Old"));
             //Random
             articles.Add(new Article("https://justjavascript.com/", "Just JavaScript", "JavaScript", "Random"));
         }
