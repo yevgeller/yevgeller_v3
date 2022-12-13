@@ -39,10 +39,10 @@ function encode(word) {
   }
 }
 
-function copyToClipboard() {
-  var sp = document.getElementById("result").firstChild.textContent;
-  window.prompt("Copy to clipboard: Ctrl+C/Cmd+C, Enter", sp);
-}
+//function copyToClipboard() {
+//  var sp = document.getElementById("result").firstChild.textContent;
+//  window.prompt("Copy to clipboard: Ctrl+C/Cmd+C, Enter", sp);
+//}
 
 function isAlpha(a) {
   var unicode = XRegExp("^\\p{L}$");
