@@ -8,14 +8,15 @@
     <h1 class="display-4">Yevgeniy Geller's sandbox</h1>
     <p>Constant work in progress.</p>
     
-    <div>
-        <div id="container" style="float: left;position:relative;height:400px;">
+    <div class="mt-2">
+        <div id="container" style="position:absolute;left:0;right:0;margin:auto;width:400px;height:400px;">
             The time is: <span id="time"></span>
             <br />
             <canvas id="clock" width="400" height="400" style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
             <canvas id="hours" width="400" height="400" style="position: absolute; left: 0; top: 0; z-index: 2;color:green;">This is a drawing of a clock.</canvas>
             <canvas id="minutes" width="400" height="400" style="position: absolute; left: 0; top: 0; z-index: 3;">This is a drawing of a clock.</canvas>
             <canvas id="seconds" width="400" height="400" style="position: absolute; left: 0; top: 0; z-index: 4;">This is a drawing of a clock.</canvas>
+
         </div>
     </div>
 
@@ -168,7 +169,7 @@ Show version or last time it was published
             context.font = "28px Arial";
             for (var i = 1; i <= 12; i++) {
                 var angle = getAngle(12, i * 2 - 1);
-                context.fillStyle = "black";
+                context.fillStyle = "green";
                 var x = Math.cos(angle) * hourInnerRadius + cX;
                 var y = Math.sin(angle) * hourInnerRadius + cY;
                 //context.fillRect(x, y, 2, 2);
@@ -185,7 +186,7 @@ Show version or last time it was published
             context.font = "10px Arial";
             for (var i = 0; i <= 59; i++) {
                 var angle = getAngle(60, i * 2 - 1);
-                context.fillStyle = "black";
+                context.fillStyle = "green";
                 var x = Math.cos(angle) * minuteInnerRadius + cX;
                 var y = Math.sin(angle) * minuteInnerRadius + cY;
                 context.save();
@@ -199,7 +200,7 @@ Show version or last time it was published
             for (var i = 0; i <= 59; i++) {
                 //context.transform(1,0,0,1,0,0);
                 var angle = getAngle(60, i * 2 - 1);
-                context.fillStyle = "black";
+                context.fillStyle = "green";
                 var x = Math.cos(angle) * secondInnerRadius + cX;
                 var y = Math.sin(angle) * secondInnerRadius + cY;
                 context.save();
