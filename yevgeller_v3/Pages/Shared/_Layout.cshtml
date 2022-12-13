@@ -41,16 +41,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/s/yevgeller_v1.html">Old version of the site</a>
                             </div>
-                        </li>
-                        @*@{
-                            //var store = new Models.Store();
-                            foreach (string x in store.GetDistinctCategories().OrderBy(x => x))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-page="/Links" asp-route-param="@x.ToLower()">@x</a>
-                                </li>
-                            }
-                        }*@
+                        </li>                        
                     </ul>
                 </div>
 
