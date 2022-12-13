@@ -43,6 +43,7 @@ Show version or last time it was published
     var secondOuterRadius = 168;
     var cX = 200;
     var cY = 200;
+    let fillStyle = "rgba(214, 245, 214,0.8)";
 
     function drawClock() {
         drawNumbers();
@@ -74,7 +75,7 @@ Show version or last time it was published
             context.beginPath();
             context.lineWidth = 0.5;
             context.strokeStyle = "#896805";
-            context.fillStyle = "rgba(255,198,27,0.8)";//80,80,80,0.8)";
+            context.fillStyle = fillStyle;//80,80,80,0.8)";
             var dtSec = new Date();
             var val2 = dtSec.getSeconds();
             var val3 = dtSec.getMilliseconds();
@@ -106,7 +107,7 @@ Show version or last time it was published
             context.beginPath();
             context.lineWidth = 0.5;
             context.strokeStyle = "#896805";
-            context.fillStyle = "rgba(255,198,27,0.8)";//80,80,80,0.8)";
+            context.fillStyle = fillStyle;//80,80,80,0.8)";
             var dtSec = new Date();
             var val2 = dtSec.getMinutes();
             var val3 = dtSec.getSeconds();
@@ -138,7 +139,7 @@ Show version or last time it was published
             context.beginPath();
             context.lineWidth = 0.5;
             context.strokeStyle = "#896805";
-            context.fillStyle = "rgba(255,198,27,0.8)";//80,80,80,0.8)";
+            context.fillStyle = fillStyle;//80,80,80,0.8)";
             var dtSec = new Date();
             var val2 = dtSec.getHours();
             if (val2 > 12) val2 -= 12;
