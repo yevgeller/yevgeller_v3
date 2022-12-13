@@ -10,8 +10,8 @@
     
     <div class="mt-2">
         <div id="container" style="position:absolute;left:0;right:0;margin:auto;width:400px;height:400px;">
-            The time is: <span id="time"></span>
-            <br />
+            @*The time is: <span id="time"></span>
+            <br />*@
             <canvas id="clock" width="400" height="400" style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
             <canvas id="hours" width="400" height="400" style="position: absolute; left: 0; top: 0; z-index: 2;color:green;">This is a drawing of a clock.</canvas>
             <canvas id="minutes" width="400" height="400" style="position: absolute; left: 0; top: 0; z-index: 3;">This is a drawing of a clock.</canvas>
@@ -24,8 +24,7 @@
 <!--
     
 Backlog: 
-Link to my github
-Landing page -- display clock
+flexbox in footer
 Better styling
 Show version or last time it was published
 -->
@@ -49,7 +48,7 @@ Show version or last time it was published
         drawNumbers();
         drawMinutes();
         drawHours();
-        setInterval(displayTime, 250);
+        //setInterval(displayTime, 250);
         setInterval(drawSeconds, 41);//24 frames per sec
         setInterval(drawMinutes, 900);
         setInterval(drawHours, 900);

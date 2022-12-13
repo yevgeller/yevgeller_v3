@@ -12,6 +12,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    <script src="https://kit.fontawesome.com/729d7e0c6a.js" crossorigin="anonymous"></script>
 </head>
 <body>    
     <header>
@@ -55,9 +56,11 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - @DateTime.Now.Year Yevgeniy Geller
-        </div>
+        @*<div class="container">*@
+            <div>&copy; 2022 - @DateTime.Now.Year Yevgeniy Geller</div>
+            <div><i class="fa-brands fa-github"></i> <a href="https:/github.com/yevgeller">My GitHub page</a></div>
+             
+        @*</div>*@
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
