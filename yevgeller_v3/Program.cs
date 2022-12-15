@@ -19,7 +19,9 @@ FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider
 provider.Mappings[".webmanifest"] = "application/manifest+json";
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles(new StaticFileOptions() { ContentTypeProvider = provider});
+app.UseStaticFiles();
 
 app.UseRouting();
 
