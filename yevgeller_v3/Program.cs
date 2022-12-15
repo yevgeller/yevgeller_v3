@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.StaticFiles;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,8 +15,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
+provider.Mappings[".webmanifest"] = "application/manifest+json";
+
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions() { ContentTypeProvider = provider});
 
 app.UseRouting();
 
