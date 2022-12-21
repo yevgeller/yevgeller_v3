@@ -13,6 +13,7 @@ namespace yevgeller_v3.Models
             articles.Add(new Article("https://yevgellerdesignpatterns.azurewebsites.net/Game1", "Mines game v2", "trunk", "Links"));
             articles.Add(new Article("https://github.com/rust-lang/rustlings", "Rustlings", "Rust resources", "Links"));
             articles.Add(new Article("https://nostarch.com/rust-programming-language-2nd-edition", "Rust book (No Starch Press)", "Rust resources", "Links"));
+
             //Exercises
             articles.Add(new Article("https://laracasts.com/topics/vue", "Laracasts", "Vue", "Exercises"));
             articles.Add(new Article("https://exercism.org/", "Exercism", "Exercises", "Exercises"));
@@ -27,6 +28,7 @@ namespace yevgeller_v3.Models
             articles.Add(new Article("https://martinfowler.com/articles/evodb.html", "Evolutionary Database Design", "", "Long reads"));
             articles.Add(new Article("http://craftinginterpreters.com/contents.html", "Crafting Interpreters", "", "Long reads"));
             articles.Add(new Article("http://gameprogrammingpatterns.com/", "Game Programming Patterns", "", "Long reads"));
+            articles.Add(new Article("https://sourcemaking.com/antipatterns", "Software Development Antipatterns", "", "Long reads"));
 
             //Project Ideas
             articles.Add(new Article("#", "Design a lift system", "Project Ideas", "Project Ideas"));
@@ -38,6 +40,7 @@ namespace yevgeller_v3.Models
             articles.Add(new Article("/s/jsClock.html", "JS canvas clock", "Old", "Old"));
             articles.Add(new Article("/s/mines.html", "Minesweeper v1", "Old", "Old"));
             articles.Add(new Article("/s/yevgeller_v1.html", "List of old projects", "Old", "Old"));
+
             //Random
             articles.Add(new Article("https://justjavascript.com/", "Just JavaScript", "JavaScript", "Random"));
         }
