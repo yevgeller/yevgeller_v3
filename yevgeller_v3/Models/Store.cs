@@ -13,7 +13,8 @@ namespace yevgeller_v3.Models
             articles.Add(new Article("https://yevgellerdesignpatterns.azurewebsites.net/Game1", "Mines game v2", "trunk", "Links"));
             articles.Add(new Article("https://github.com/rust-lang/rustlings", "Rustlings", "Rust resources", "Links"));
             articles.Add(new Article("https://nostarch.com/rust-programming-language-2nd-edition", "Rust book (No Starch Press)", "Rust resources", "Links"));
-
+            articles.Add(new Article("https://www.overleaf.com/", "Collaborative LaTeX Editor", "LaTeX", "Links"));
+            articles.Add(new Article("https://www.texstudio.org", "LaTeX Editor", "LaTeX", "Links"));
             //Exercises
             articles.Add(new Article("https://laracasts.com/topics/vue", "Laracasts", "Vue", "Exercises"));
             articles.Add(new Article("https://exercism.org/", "Exercism", "Exercises", "Exercises"));
