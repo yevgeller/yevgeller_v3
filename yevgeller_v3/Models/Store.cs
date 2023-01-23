@@ -31,6 +31,7 @@ namespace yevgeller_v3.Models
             articles.Add(new Article("http://gameprogrammingpatterns.com/", "Game Programming Patterns", "", "Long reads"));
             articles.Add(new Article("https://sourcemaking.com/antipatterns", "Software Development Antipatterns", "", "Long reads"));
             articles.Add(new Article("https://teapowered.dev/assets/ga-notes.pdf", "Algorithms notes", "", "Long reads"));
+            articles.Add(new Article("https://sourcemaking.com/antipatterns", "AntiPatterns", "", "Long reads"));
 
             //Project Ideas
             articles.Add(new Article("#", "Design a lift system", "Project Ideas", "Project Ideas"));
