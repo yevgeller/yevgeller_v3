@@ -17,9 +17,10 @@ namespace yevgeller_v3.Models
             articles.Add(new Article("https://www.texstudio.org", "LaTeX Editor", "LaTeX", "Links"));
             articles.Add(new Article("https://ankiweb.net/account/login", "Anki system", "Random", "Links"));
             //Exercises
-            articles.Add(new Article("https://laracasts.com/topics/vue", "Laracasts", "Vue", "Exercises"));
+            //articles.Add(new Article("https://laracasts.com/topics/vue", "Laracasts", "Vue", "Exercises"));
             articles.Add(new Article("https://exercism.org/", "Exercism", "Exercises", "Exercises"));
             articles.Add(new Article("https://adventofcode.com/", "Advent of Code", "Exercises", "Exercises"));
+            articles.Add(new Article("https://neetcode.io/practice", "NeetCode", "Exercises", "Exercises"));
 
             //Articles
             articles.Add(new Article("https://javascript.plainenglish.io/top-javascript-one-liners-will-make-you-a-superhero-af1363083354", "Useful One-liners", "JavaScript resources", "Articles"));
