@@ -1,0 +1,90 @@
+﻿@page
+@model yevgeller_v3.Pages.Test1Model
+
+@{
+    <span class="custom-font">
+
+        <div class="quiz-container">
+            <!-- Question -->
+            <div class="quiz-question">
+                @Model.tq.Question
+            </div>
+
+                <div class="quiz-answers">
+                @foreach (var a in Model.tq.Answers)
+                    {
+                        <label class="quiz-answer">
+                            <input type="radio" name="SelectedAnswer" value="@a.Answer" />
+                            @a.Answer
+                        </label>
+                    }
+                </div>
+                <button type="submit">Submit</button>
+        </div>
+
+
+
+    <p>@Model.tq.Question</p>
+
+    @foreach(var a in Model.tq.Answers)
+    {
+        <div>
+            <input type="radio" id="answer@i" name="SelectedAnswer" value="@a.Answer" />
+            <label for="answer@i">@a.Answer</label>
+        </div>
+    }
+    </span>
+}
+
+
+<style>
+    @@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+    .custom-font {
+        font-family: 'Patrick Hand', cursive;
+        font-size: xx-large;
+    }
+
+    .quiz-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .quiz-question {
+        font-size: 2rem; /* Larger font size for the question */
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .quiz-answers {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two columns */
+        gap: 20px; /* Space between answer buttons */
+    }
+
+    .quiz-answer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .quiz-answer:hover {
+            background-color: #e0e0e0;
+        }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+</style>
