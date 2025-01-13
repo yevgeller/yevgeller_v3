@@ -2,36 +2,36 @@
 @model yevgeller_v3.Pages.Test1Model
 
 @{
-    
+
     <span class="custom-font">
 
         <div class="quiz-container">
             <div class="quiz-question">
-                @Model.tq.Question
+                @Model.repo.GetQuestionCount()  @Model.tq.Question
             </div>
             <form asp-page-handler="edit" method="post">
                 <div class="quiz-answers">
-                @foreach (var a in Model.tq.Answers)
+                    @foreach (var a in Model.tq.Answers)
                     {
-                    <button type="submit" class="quiz-answer" asp-page-handler="edit" asp-route-answer="@a.Answer">@a.Answer</button>
+                        <button type="submit" class="quiz-answer" asp-page-handler="edit" asp-route-answer="@a.Answer">@a.Answer</button>
 
-                }
+                    }
                 </div>
-                </form>
-                <!-- <button type="submit">Submit</button> --> 
+            </form>
+            <!-- <button type="submit">Submit</button> -->
         </div>
 
 
 
-    <p>@Model.tq.Question</p>
+        <p> @Model.tq.Question</p>
 
-    @foreach(var a in Model.tq.Answers)
-    {
-        <div>
-            <input type="radio" id="answer@i" name="SelectedAnswer" value="@a.Answer" />
-            <label for="answer@i">@a.Answer</label>
-        </div>
-    }
+        @foreach (var a in Model.tq.Answers)
+        {
+            <div>
+                <input type="radio" id="answer@i" name="SelectedAnswer" value="@a.Answer" />
+                <label for="answer@i">@a.Answer</label>
+            </div>
+        }
     </span>
 }
 

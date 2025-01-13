@@ -1,7 +1,15 @@
 ﻿namespace yevgeller_v3.Models.BdpqTestingFramework
 {
 
-    public class Repository
+    public interface IBdpqTestingRepository
+    {
+        List<TestItem> GetTestItems();
+        TestQuestion GetNextQuestion();
+        TestQuestion ProcessAnswer(string answer);
+        int GetQuestionCount();
+    }
+
+    public class Repository : IBdpqTestingRepository
     {
         private int count = 0;
         public List<TestItem> Items { get; set; }
@@ -50,6 +58,13 @@
                 };
             }
         }
+
+        public TestQuestion ProcessAnswer(string answer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetQuestionCount() => count;
     }
 
     public class TestItem

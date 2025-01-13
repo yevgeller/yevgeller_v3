@@ -8,14 +8,21 @@ namespace yevgeller_v3.Pages
 {
     public class Test1Model : PageModel
     {
-        public Repository repository = new Repository();
+        //public Repository repository = new Repository();
+        public readonly IBdpqTestingRepository repo;
         public TestQuestion tq;
+
+        public Test1Model(IBdpqTestingRepository repository)
+        {
+            this.repo = repository;
+            tq = repo.GetNextQuestion();
+        }
 
         public void OnGet()
         {
-            if (repository == null) repository = new Repository();
+            //if (repository == null) repository = new Repository();
 
-            tq = repository.GetNextQuestion();
+            tq = repo.GetNextQuestion();
         }
 
         public void OnPostEdit(string answer)
@@ -23,7 +30,7 @@ namespace yevgeller_v3.Pages
             var j = answer;
             var a = 1;
 
-            tq = repository.GetNextQuestion();
+            tq = repo.GetNextQuestion();
             //Message = "Edit handler fired";
         }
 
@@ -34,9 +41,9 @@ namespace yevgeller_v3.Pages
 
             if (found == null) return NotFound();
 
-            tq = repository.GetNextQuestion();
+            tq = repo.GetNextQuestion();
 
-            return null;
+            //return null;
             //var contact = await _context.Customer.FindAsync(id);
 
             //if (contact != null)
