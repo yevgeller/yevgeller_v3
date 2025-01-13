@@ -8,7 +8,7 @@ namespace yevgeller_v3.Pages
 {
     public class Test1Model : PageModel
     {
-        public Repository repository;
+        public Repository repository = new Repository();
         public TestQuestion tq;
 
         public void OnGet()

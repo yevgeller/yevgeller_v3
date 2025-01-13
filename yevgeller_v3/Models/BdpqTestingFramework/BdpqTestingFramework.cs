@@ -3,8 +3,11 @@
 
     public class Repository
     {
+        private int count = 0;
         public List<TestItem> Items { get; set; }
         public Repository() {
+
+            count = 0;
             if(Items == null) { Items = new List<TestItem>(); }
 
             Items.Add(new TestItem { Id = 1, Question = "b", Answer = "bee" });
@@ -17,18 +20,35 @@
 
         public TestQuestion GetNextQuestion()
         {
-            var q = new TestQuestion
+            count++;
+            if (count % 2 == 0)
             {
-                Question = "b",
-                Answers = new List<TestAnswer> {
-                    new TestAnswer { Answer = "deer", IsCorrect = false },
-                    new TestAnswer { Answer = "peer", IsCorrect = false },
-                    new TestAnswer { Answer = "bee", IsCorrect = true},
-                    new TestAnswer { Answer = "queue", IsCorrect =false},
-                }
-            };
+                return new TestQuestion
+                {
+                    Question = "b",
+                    Answers = new List<TestAnswer> {
+                        new TestAnswer { Answer = "deer", IsCorrect = false },
+                        new TestAnswer { Answer = "peer", IsCorrect = false },
+                        new TestAnswer { Answer = "bee", IsCorrect = true },
+                        new TestAnswer { Answer = "queue", IsCorrect = false },
+                    }
+                };
 
-            return q;
+            }
+            else
+            {
+                return new TestQuestion
+                {
+                    Question = "d",
+                    Answers = new List<TestAnswer>
+                    {
+                        new TestAnswer { Answer = "deer", IsCorrect = true },
+                        new TestAnswer { Answer = "peer", IsCorrect = false },
+                        new TestAnswer { Answer = "bee", IsCorrect = false },
+                        new TestAnswer { Answer = "queue", IsCorrect = false },
+                    }
+                };
+            }
         }
     }
 
