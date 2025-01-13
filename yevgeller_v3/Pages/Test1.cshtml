@@ -2,24 +2,23 @@
 @model yevgeller_v3.Pages.Test1Model
 
 @{
+    
     <span class="custom-font">
 
         <div class="quiz-container">
-            <!-- Question -->
             <div class="quiz-question">
                 @Model.tq.Question
             </div>
-
+            <form asp-page-handler="edit" method="post">
                 <div class="quiz-answers">
                 @foreach (var a in Model.tq.Answers)
                     {
-                        <label class="quiz-answer">
-                            <input type="radio" name="SelectedAnswer" value="@a.Answer" />
-                            @a.Answer
-                        </label>
-                    }
+                    <button type="submit" class="quiz-answer" asp-page-handler="edit" asp-route-answer="@a.Answer">@a.Answer</button>
+
+                }
                 </div>
-                <button type="submit">Submit</button>
+                </form>
+                <!-- <button type="submit">Submit</button> --> 
         </div>
 
 
