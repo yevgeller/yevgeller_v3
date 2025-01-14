@@ -7,6 +7,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
     public interface IBdpqTestingRepository
     {
         List<TestItem> GetTestItems();
+        List<TestItem> GetTestItemsByCategory();
         TestQuestion GetNextQuestion();
         TestQuestion ProcessAnswer(string answer);
         int GetQuestionCount();
@@ -16,10 +17,12 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
     {
         private int count = 0;
         public List<TestItem> Items { get; set; } = new List<TestItem>();
+        public List<TestItem> ItemsByCategory { get; set; } = new List<TestItem> { };
         public Repository()
         {
             count = 0;
             GenerateTestItems();
+            GenerateTestItemsByCategory(QuestionCategory.LetterToPicture);
         }
         private void GenerateTestItems()
         {
@@ -49,7 +52,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
                         {
                             Id = idCounter++,
                             QuestionType = letter,
-                            Question = letter ,
+                            Question = letter,
                             Answer = letter,
                             AnswerWord = ExtractWordFromIconName(icon),
                             HintIcon = icon,
@@ -62,6 +65,11 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
             }
         }
 
+        private void GenerateTestItemsByCategory(QuestionCategory category)
+        {
+            ItemsByCategory = Items.Where(x => x.QuestionCategory == category).ToList();
+        }
+
         private string ExtractWordFromIconName(string iconName)
         {
             var temp = iconName.Replace("fa-", "");
@@ -71,6 +79,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
             return temp.Substring(0, temp.IndexOf("-"));
         }
         public List<TestItem> GetTestItems() => Items;
+        public List<TestItem> GetTestItemsByCategory() => ItemsByCategory;
 
         public TestQuestion GetNextQuestion()
         {
@@ -147,6 +156,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
     public class TestAnswer
     {
         public string Answer { get; set; } = string.Empty;
-        public bool IsCorrect { get; set; }
+        public bool IsCorrect { get; set; } = false;
+        public bool IsDisabled { get; set; } = false;
     }
 }

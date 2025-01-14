@@ -40,7 +40,7 @@
         -->
     </span>
 
-    @foreach (var t in @Model.repo.GetTestItems()
+    @foreach (var t in @Model.repo.GetTestItemsByCategory()
                                 .OrderBy(x => x.QuestionType)
                                 .ThenBy(x => x.QuestionCategory))
     {
