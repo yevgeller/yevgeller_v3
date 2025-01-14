@@ -20,8 +20,6 @@ namespace yevgeller_v3.Pages
 
         public void OnGet()
         {
-            //if (repository == null) repository = new Repository();
-
             tq = repo.GetNextQuestion();
         }
 

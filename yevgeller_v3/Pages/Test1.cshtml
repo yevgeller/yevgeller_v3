@@ -30,15 +30,22 @@
         <!--
          <p> @Model.tq.Question</p>
 
-         @foreach (var a in Model.tq.Answers)
-         {
-             <div>
-                 <input type="radio" id="answer@i" name="SelectedAnswer" value="@a.Answer" />
-                 <label for="answer@i">@a.Answer</label>
-             </div>
-         }
+        @foreach (var a in Model.tq.Answers)
+        {
+                 <div>
+                     <input type="radio" id="answer@i" name="SelectedAnswer" value="@a.Answer" />
+                     <label for="answer@i">@a.Answer</label>
+                 </div>
+        }
         -->
     </span>
+
+    @foreach (var t in @Model.repo.GetTestItems()
+                                .OrderBy(x => x.QuestionType)
+                                .ThenBy(x => x.QuestionCategory))
+    {
+        <div style="font-size:3rem;">@Html.Raw(t.IconAsHtml()) @t.ToString()</div>
+    }
 }
 
 

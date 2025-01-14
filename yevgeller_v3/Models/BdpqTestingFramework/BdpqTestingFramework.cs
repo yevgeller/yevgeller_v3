@@ -1,4 +1,7 @@
-﻿namespace yevgeller_v3.Models.BdpqTestingFramework
+﻿using System.Diagnostics.Metrics;
+using System.Reflection.Metadata.Ecma335;
+
+namespace yevgeller_v3.Models.BdpqTestingFramework
 {
 
     public interface IBdpqTestingRepository
@@ -12,18 +15,61 @@
     public class Repository : IBdpqTestingRepository
     {
         private int count = 0;
-        public List<TestItem> Items { get; set; }
-        public Repository() {
-
+        public List<TestItem> Items { get; set; } = new List<TestItem>();
+        public Repository()
+        {
             count = 0;
-            if(Items == null) { Items = new List<TestItem>(); }
+            GenerateTestItems();
+        }
+        private void GenerateTestItems()
+        {
 
-            Items.Add(new TestItem { Id = 1, Question = "b", Answer = "bee" });
-            Items.Add(new TestItem { Id = 2, Question = "d", Answer = "dee" });
-            Items.Add(new TestItem { Id = 3, Question = "p", Answer = "pee" });
-            Items.Add(new TestItem { Id = 4, Question = "q", Answer = "queue" });
+            if (Items.Count > 0)
+                return;
+
+            int idCounter = 1;
+            var categories = Enum.GetValues(typeof(QuestionCategory));
+
+            var itemsByLetter = new Dictionary<string, string[]>
+            {
+                { "b", new[] { "fa-book", "fa-bicycle", "fa-bread-slice" } },
+                { "d", new[] { "fa-door-open", "fa-drum", "fa-dog" } },
+                { "p", new[] { "fa-pencil-alt", "fa-pizza-slice", "fa-paper-plane" } },
+                { "q", new[] { "fa-question-circle", "fa-quidditch", "fa-qrcode" } }
+            };
+
+            foreach (QuestionCategory category in categories)
+            {
+                foreach (var letter in itemsByLetter.Keys)
+                {
+                    var icons = itemsByLetter[letter];
+                    foreach (var icon in icons)
+                    {
+                        var t = new TestItem
+                        {
+                            Id = idCounter++,
+                            QuestionType = letter,
+                            Question = letter ,
+                            Answer = letter,
+                            AnswerWord = ExtractWordFromIconName(icon),
+                            HintIcon = icon,
+                            QuestionCategory = category
+                        };
+
+                        Items.Add(t);
+                    }
+                }
+            }
         }
 
+        private string ExtractWordFromIconName(string iconName)
+        {
+            var temp = iconName.Replace("fa-", "");
+            if (temp.IndexOf("-") == -1)
+                return temp;
+
+            return temp.Substring(0, temp.IndexOf("-"));
+        }
         public List<TestItem> GetTestItems() => Items;
 
         public TestQuestion GetNextQuestion()
@@ -67,17 +113,34 @@
         public int GetQuestionCount() => count;
     }
 
+    public enum QuestionCategory
+    {
+        LetterToPicture,
+        LetterToWord,
+        PictureToLetter,
+        WordToLetter
+    }
+
     public class TestItem
     {
         public int Id { get; set; }
-        public string Question { get; set; } = "?";
-        public string Answer { get; set; } = "!";
+        public string QuestionType { get; set; } = ""; //b,d,p,q
+        public string Question { get; set; } = "?"; //q
+        public string Answer { get; set; } = "!"; //q
+        public string AnswerWord { get; set; } = "!"; //question
+        public string HintIcon { get; set; } = "fa-question";
+        public QuestionCategory QuestionCategory { get; set; }
+
+        public string IconAsHtml() => "<i class='fas " + HintIcon + "'></i>";
+        public override string ToString()
+        {
+            return $"Id: {Id}, Type: {QuestionType}, ?: {Question}, !: {Answer}, Word: {AnswerWord}, Icon: {HintIcon}, Cat: {QuestionCategory} ";
+        }
     }
 
     public class TestQuestion
     {
         public string Question { get; set; } = "?";
-
         public List<TestAnswer> Answers { get; set; } = new List<TestAnswer>();
     }
 
