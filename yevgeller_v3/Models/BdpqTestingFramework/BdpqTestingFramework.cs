@@ -8,6 +8,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
     {
         List<TestItem> GetTestItems();
         List<TestItem> GetTestItemsByCategory();
+        List<TestItem> GetTestItemsForATest();
         TestQuestion GetNextQuestion();
         TestQuestion ProcessAnswer(string answer);
         int GetQuestionCount();
@@ -18,11 +19,14 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         private int count = 0;
         public List<TestItem> Items { get; set; } = new List<TestItem>();
         public List<TestItem> ItemsByCategory { get; set; } = new List<TestItem> { };
+        public List<TestItem> ItemsForATest { get; set; } = new List<TestItem>();
+
         public Repository()
         {
             count = 0;
             GenerateTestItems();
             GenerateTestItemsByCategory(QuestionCategory.LetterToPicture);
+            GenerateTestItemsForATest();
         }
         private void GenerateTestItems()
         {
@@ -70,6 +74,29 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
             ItemsByCategory = Items.Where(x => x.QuestionCategory == category).ToList();
         }
 
+        private void GenerateTestItemsForATest()
+        {
+            ItemsForATest.Clear();
+
+            ItemsForATest.Add(RandomTestItemOfAType("b"));
+            ItemsForATest.Add(RandomTestItemOfAType("d"));
+            ItemsForATest.Add(RandomTestItemOfAType("p"));
+            ItemsForATest.Add(RandomTestItemOfAType("q"));
+
+        }
+
+        private TestItem RandomTestItemOfAType(string type)
+        {
+            var q = ItemsByCategory.Where(x=>x.QuestionType == type);
+            if(q.Count() > 0)
+            {
+                Random r = new Random();
+                return q.ElementAt(r.Next(q.Count()));
+            }
+
+            throw new Exception("There were no TestItems of QuestionType " +  type);
+        }
+
         private string ExtractWordFromIconName(string iconName)
         {
             var temp = iconName.Replace("fa-", "");
@@ -80,6 +107,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         }
         public List<TestItem> GetTestItems() => Items;
         public List<TestItem> GetTestItemsByCategory() => ItemsByCategory;
+        public List<TestItem> GetTestItemsForATest() => ItemsForATest;
 
         public TestQuestion GetNextQuestion()
         {
