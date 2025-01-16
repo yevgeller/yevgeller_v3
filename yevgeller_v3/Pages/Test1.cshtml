@@ -4,7 +4,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 }
 @{
-   
+
 
 
 
@@ -20,8 +20,25 @@
                 <div class="quiz-answers">
                     @foreach (var a in Model.tq.Answers)
                     {
-                        <button type="submit" class="quiz-answer" asp-page-handler="edit" asp-route-answer="@a.Answer">@a.Answer</button>
-
+                        if (a.IsDisabled)
+                        {
+                            <button type="submit"
+                                    class="quiz-answer"
+                                    asp-page-handler="edit"
+                                    asp-route-answer="@a.Answer"
+                                    disabled>
+                                @a.Answer
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="submit"
+                                    class="quiz-answer"
+                                    asp-page-handler="edit"
+                                    asp-route-answer="@a.Answer">
+                                @a.Answer
+                            </button>
+                        }
                     }
                 </div>
             </form>
@@ -34,17 +51,17 @@
 
         @foreach (var a in Model.tq.Answers)
         {
-                 <div>
-                     <input type="radio" id="answer@i" name="SelectedAnswer" value="@a.Answer" />
-                     <label for="answer@i">@a.Answer</label>
-                 </div>
+                     <div>
+                         <input type="radio" id="answer@i" name="SelectedAnswer" value="@a.Answer" />
+                         <label for="answer@i">@a.Answer</label>
+                     </div>
         }
         -->
     </span>
 
     @foreach (var t in @Model.repo.GetTestItemsByCategory()
-                                .OrderBy(x => x.QuestionType)
-                                .ThenBy(x => x.QuestionCategory))
+                               .OrderBy(x => x.QuestionType)
+                               .ThenBy(x => x.QuestionCategory))
     {
         <div style="font-size:3rem;">@Html.Raw(t.IconAsHtml()) @t.ToString()</div>
     }
@@ -59,8 +76,8 @@
     <h1>Test Items:</h1>
 
     @foreach (var t in @Model.repo.GetTestItemsForATest()
-                             .OrderBy(x => x.QuestionType)
-                             .ThenBy(x => x.QuestionCategory))
+                            .OrderBy(x => x.QuestionType)
+                            .ThenBy(x => x.QuestionCategory))
     {
         <div style="font-size:3rem;">@Html.Raw(t.IconAsHtml()) @t.ToString()</div>
     }
