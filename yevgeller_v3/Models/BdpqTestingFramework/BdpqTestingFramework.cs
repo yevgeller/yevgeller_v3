@@ -8,6 +8,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
     public interface IBdpqTestingFramework
     {
         List<TestItem> GetTestItems();
+        List<TestItem> GetTestItemsByCategory();
         List<TestItem> GetTestItemsByCategory(QuestionCategory category);
         List<TestItem> GetTestItemsForATest();
         TestQuestion GetNextQuestion();
@@ -28,11 +29,24 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         }
 
         public List<TestItem> GetTestItems() => repository.AllTestItems();
+        public List<TestItem> GetTestItemsByCategory() => repository.TestItemsByCategory();
         public List<TestItem> GetTestItemsByCategory(QuestionCategory category) => repository.TestItemsByCategory(category);
         public List<TestItem> GetTestItemsForATest() => repository.GetItemsForATest();
 
         public TestQuestion GetNextQuestion()
         {
+            testQuestion = new TestQuestion
+            {
+                Question = "b",
+                Answers = new()
+            };
+
+            testQuestion.Answers.Add(new TestAnswer { Answer = "b", IsCorrect = true, IsDisabled = false });
+            testQuestion.Answers.Add(new TestAnswer { Answer = "d", IsCorrect = false, IsDisabled = false });
+            testQuestion.Answers.Add(new TestAnswer { Answer = "p", IsCorrect = false, IsDisabled = false });
+            testQuestion.Answers.Add(new TestAnswer { Answer = "q", IsCorrect = false, IsDisabled = false });
+            testQuestion.Answers.Shuffle();
+
             return testQuestion;
             /*
             count++;
@@ -69,7 +83,21 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
 
         public TestQuestion ProcessAnswer(string answer)
         {
-            throw new NotImplementedException();
+            if (testQuestion.Answers.Count == 0 || answer == string.Empty) //new request
+                return GetNextQuestion();
+
+            var a = testQuestion.Answers
+                .Where(x => String.Compare(x.Answer, answer, StringComparison.OrdinalIgnoreCase) == 0)
+                .FirstOrDefault();
+            if (a == null)
+                throw new Exception($"No answer \"{answer}\" is found for this question");
+
+            if (a.IsCorrect)
+                testQuestion = GetNextQuestion();
+            else
+                a.IsDisabled = true;
+
+            return testQuestion;
         }
 
         public int GetQuestionCount() => count;

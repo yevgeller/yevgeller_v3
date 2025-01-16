@@ -5,6 +5,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
     public interface IBdpqTestingRepository
     {
         List<TestItem> AllTestItems();
+        List<TestItem> TestItemsByCategory();
         List<TestItem> TestItemsByCategory(QuestionCategory category);
         List<TestItem> GetItemsForATest();
     }
@@ -20,6 +21,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         private List<TestItem> itemsBank { get; set; } = new List<TestItem>();
         public List<TestItem> AllTestItems() => itemsBank;
         public List<TestItem> TestItemsByCategory(QuestionCategory category) => itemsBank.Where(i => i.QuestionCategory == category).ToList();
+        public List<TestItem> TestItemsByCategory() => itemsBank.Where(x => x.QuestionCategory == DefaultSelectedCategory).ToList();
         public List<TestItem> GetItemsForATest() => ItemsForATest;
         
         public List<TestItem> ItemsForATest { get; set; } = new List<TestItem>();

@@ -15,31 +15,31 @@ namespace yevgeller_v3.Pages
         public Test1Model(IBdpqTestingFramework repository)
         {
             this.repo = repository;
-            tq = repo.GetNextQuestion();
+            tq = repo.ProcessAnswer(string.Empty);
         }
 
         public void OnGet()
         {
-            tq = repo.GetNextQuestion();
+            tq = repo.ProcessAnswer(string.Empty);
         }
 
-        public void OnPostEdit(string answer)
-        {
-            var j = answer;
-            var a = 1;
+       // public void OnPostEdit(string answer)
+        //{
+        //    var j = answer;
+        //    var a = 1;
 
-            tq = repo.GetNextQuestion();
-            //Message = "Edit handler fired";
-        }
+        //    tq = repo.GetNextQuestion();
+        //    //Message = "Edit handler fired";
+        //}
 
         //public async Task<IActionResult> OnPostProcessAsync(string answer)
-        public IActionResult OnPostProcess(string answer)
+        public void OnPostEdit(string answer)
         {
             var found = tq.Answers.FirstOrDefault(x=>x.Answer == answer);
 
-            if (found == null) return NotFound();
+           // if (found == null) return NotFound();
 
-            tq = repo.GetNextQuestion();
+            tq = repo.ProcessAnswer(answer);
 
             //return null;
             //var contact = await _context.Customer.FindAsync(id);
@@ -50,7 +50,7 @@ namespace yevgeller_v3.Pages
             //    await _context.SaveChangesAsync();
             //}
 
-            return RedirectToPage();
+            //return RedirectToPage();
         }
     }
 }
