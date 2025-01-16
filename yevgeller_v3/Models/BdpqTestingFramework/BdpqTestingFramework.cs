@@ -83,8 +83,11 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
 
         public TestQuestion ProcessAnswer(string answer)
         {
-            if (testQuestion.Answers.Count == 0 || answer == string.Empty) //new request
+            if (testQuestion.Answers.Count == 0)  //new request
                 return GetNextQuestion();
+
+            if (answer == string.Empty)
+                return testQuestion;
 
             var a = testQuestion.Answers
                 .Where(x => String.Compare(x.Answer, answer, StringComparison.OrdinalIgnoreCase) == 0)

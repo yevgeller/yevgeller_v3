@@ -10,12 +10,12 @@ namespace yevgeller_v3.Pages
     {
         //public BdpqTestingFramework repository = new BdpqTestingFramework();
         public readonly IBdpqTestingFramework repo;
-        public TestQuestion tq;
+        public TestQuestion tq = new();
 
         public Test1Model(IBdpqTestingFramework repository)
         {
             this.repo = repository;
-            tq = repo.ProcessAnswer(string.Empty);
+            tq = new(); // repo.ProcessAnswer(string.Empty);
         }
 
         public void OnGet()
