@@ -35,7 +35,7 @@ namespace yevgeller_v3.Pages
         //public async Task<IActionResult> OnPostProcessAsync(string answer)
         public void OnPostEdit(string answer)
         {
-            var found = tq.Answers.FirstOrDefault(x=>x.Answer == answer);
+            //var found = tq.Answers.FirstOrDefault(x=>x.Answer == answer);
 
            // if (found == null) return NotFound();
 

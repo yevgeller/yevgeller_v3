@@ -41,10 +41,10 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
                 Answers = new()
             };
 
-            testQuestion.Answers.Add(new TestAnswer { Answer = "b", IsCorrect = true, IsDisabled = false });
-            testQuestion.Answers.Add(new TestAnswer { Answer = "d", IsCorrect = false, IsDisabled = false });
-            testQuestion.Answers.Add(new TestAnswer { Answer = "p", IsCorrect = false, IsDisabled = false });
-            testQuestion.Answers.Add(new TestAnswer { Answer = "q", IsCorrect = false, IsDisabled = false });
+            testQuestion.Answers.Add(new TestAnswer { Answer = "BEE", IsCorrect = true, IsDisabled = false });
+            testQuestion.Answers.Add(new TestAnswer { Answer = "DEER", IsCorrect = false, IsDisabled = false });
+            testQuestion.Answers.Add(new TestAnswer { Answer = "PEAR", IsCorrect = false, IsDisabled = false });
+            testQuestion.Answers.Add(new TestAnswer { Answer = "QUEEN", IsCorrect = false, IsDisabled = false });
             testQuestion.Answers.Shuffle();
 
             return testQuestion;
