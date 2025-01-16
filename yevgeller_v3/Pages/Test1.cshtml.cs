@@ -8,11 +8,11 @@ namespace yevgeller_v3.Pages
 {
     public class Test1Model : PageModel
     {
-        //public Repository repository = new Repository();
-        public readonly IBdpqTestingRepository repo;
+        //public BdpqTestingFramework repository = new BdpqTestingFramework();
+        public readonly IBdpqTestingFramework repo;
         public TestQuestion tq;
 
-        public Test1Model(IBdpqTestingRepository repository)
+        public Test1Model(IBdpqTestingFramework repository)
         {
             this.repo = repository;
             tq = repo.GetNextQuestion();

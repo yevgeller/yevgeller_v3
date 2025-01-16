@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.StaticFiles;
 using yevgeller_v3.Models.BdpqTestingFramework;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSingleton<IBdpqTestingRepository, Repository>();
+builder.Services.AddSingleton<IBdpqTestingRepository,  BdpqTestingRepository>();
+builder.Services.AddSingleton<IBdpqTestingFramework, BdpqTestingFramework>();
 // Add services to the container.
 builder.Services.AddRazorPages();
 
