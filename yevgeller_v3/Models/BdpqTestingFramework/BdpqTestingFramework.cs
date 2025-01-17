@@ -35,6 +35,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
 
         public TestQuestion GetNextQuestion()
         {
+
             testQuestion = new TestQuestion
             {
                 Question = "b",
@@ -42,43 +43,12 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
             };
 
             testQuestion.Answers.Add(new TestAnswer { Answer = "BEE", IsCorrect = true, IsDisabled = false });
-            testQuestion.Answers.Add(new TestAnswer { Answer = "DEER", IsCorrect = false, IsDisabled = false });
+            testQuestion.Answers.Add(new TestAnswer { Answer = "DOOR", IsCorrect = false, IsDisabled = false });
             testQuestion.Answers.Add(new TestAnswer { Answer = "PEAR", IsCorrect = false, IsDisabled = false });
             testQuestion.Answers.Add(new TestAnswer { Answer = "QUEEN", IsCorrect = false, IsDisabled = false });
             testQuestion.Answers.Shuffle();
 
             return testQuestion;
-            /*
-            count++;
-            if (count % 2 == 0)
-            {
-                return new TestQuestion
-                {
-                    Question = "b",
-                    Answers = new List<TestAnswer> {
-                        new TestAnswer { Answer = "deer", IsCorrect = false },
-                        new TestAnswer { Answer = "peer", IsCorrect = false },
-                        new TestAnswer { Answer = "bee", IsCorrect = true },
-                        new TestAnswer { Answer = "queue", IsCorrect = false },
-                    }
-                };
-
-            }
-            else
-            {
-                return new TestQuestion
-                {
-                    Question = "d",
-                    Answers = new List<TestAnswer>
-                    {
-                        new TestAnswer { Answer = "deer", IsCorrect = true },
-                        new TestAnswer { Answer = "peer", IsCorrect = false },
-                        new TestAnswer { Answer = "bee", IsCorrect = false },
-                        new TestAnswer { Answer = "queue", IsCorrect = false },
-                    }
-                };
-            }
-            */
         }
 
         public TestQuestion ProcessAnswer(string answer)

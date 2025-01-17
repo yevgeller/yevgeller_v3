@@ -4,17 +4,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 }
 @{
-
-
-
-
     <hr />
 
     <span class="custom-font">
 
         <div class="quiz-container">
             <div class="quiz-question">
-                @Model.repo.GetQuestionCount()  @Model.tq.Question
+                @Model.tq.Question
             </div>
             <form asp-page-handler="edit" method="post">
                 <div class="quiz-answers">
@@ -42,46 +38,12 @@
                     }
                 </div>
             </form>
-            <!-- <button type="submit">Submit</button> -->
+            <table>
+                <tr><td>b 0/0</td><td>&nbsp;</td><td>d 0/0</td></tr>
+                <tr><td>p 0/0</td><td>&nbsp;</td><td>q 0/0</td></tr>
+            </table>
         </div>
-
-
-        <!--
-         <p> @Model.tq.Question</p>
-
-        @foreach (var a in Model.tq.Answers)
-        {
-                     <div>
-                         <input type="radio" id="answer@i" name="SelectedAnswer" value="@a.Answer" />
-                         <label for="answer@i">@a.Answer</label>
-                     </div>
-        }
-        -->
     </span>
-
-    @foreach (var t in @Model.repo.GetTestItemsByCategory()
-                               .OrderBy(x => x.QuestionType)
-                               .ThenBy(x => x.QuestionCategory))
-    {
-        <div style="font-size:3rem;">@Html.Raw(t.IconAsHtml()) @t.ToString()</div>
-    }
-
-    <h1>Font Awesome Icons</h1>
-    <i class="fas fa-bicycle"></i>
-    <i class="fas fa-drum"></i>
-    <i class="fas fa-parking"></i>
-    <hr />
-    <hr />
-
-    <h1>Test Items:</h1>
-
-    @foreach (var t in @Model.repo.GetTestItemsForATest()
-                            .OrderBy(x => x.QuestionType)
-                            .ThenBy(x => x.QuestionCategory))
-    {
-        <div style="font-size:3rem;">@Html.Raw(t.IconAsHtml()) @t.ToString()</div>
-    }
-
 }
 
 
