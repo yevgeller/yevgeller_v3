@@ -41,7 +41,7 @@
             <table>
                 @foreach (var s in Model.stats)
                 {
-                    <tr><td>@s.Item: &nbsp;</td><td><span class="wrongStat">@s.Incorrect</span>/@s.Total</td></tr>
+                    <tr><td>@s.Item: &nbsp;</td><td><span class="@(s.IsPerfect() == false ? "notQuite" : "")">@s.Correct</span>/@s.Total</td></tr>
                 }
             </table>
         </div>
@@ -101,8 +101,8 @@
         text-decoration: line-through;
     }
 
-    .wrongStat {
-        color: red;
+    .notQuite {
+        color: yellow;
     }
 
     button {

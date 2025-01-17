@@ -73,12 +73,12 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
             var stat = this.CurrentTestItemStatistics.FirstOrDefault(x => x.Item == question);
             if(stat == null)
             {
-                CurrentTestItemStatistics.Add(new TestItemStatistic { Item = question, Total = 1, Incorrect = (isCorrect== true? 0 : 1) });
+                CurrentTestItemStatistics.Add(new TestItemStatistic { Item = question, Total = 1, Correct = (isCorrect== true? 1 : 0) });
             }
             else
             {
                 stat.Total++;
-                stat.Incorrect += (isCorrect ? 0 : 1);
+                stat.Correct += (isCorrect ? 1 : 0);
             }
         }
 
@@ -125,7 +125,9 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
     public class TestItemStatistic
     {
         public string Item { get; set; } = string.Empty;
-        public int Incorrect { get; set; }
+        public int Correct { get; set; }
         public int Total { get; set; }
+
+        public bool IsPerfect() => Correct == Total;
     }
 }
