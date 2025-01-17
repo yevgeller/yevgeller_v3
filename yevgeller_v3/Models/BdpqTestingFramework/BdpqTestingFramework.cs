@@ -35,18 +35,18 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
 
         public TestQuestion GetNextQuestion()
         {
-           
-            testQuestion = new TestQuestion
-            {
-                Question = "b",
-                Answers = new()
-            };
+           testQuestion = repository.GenerateTestQuestion();
+            //testQuestion = new TestQuestion
+            //{
+            //    Question = "b",
+            //    Answers = new()
+            //};
 
-            testQuestion.Answers.Add(new TestAnswer { Answer = "BEE", IsCorrect = true, IsDisabled = false });
-            testQuestion.Answers.Add(new TestAnswer { Answer = "DOOR", IsCorrect = false, IsDisabled = false });
-            testQuestion.Answers.Add(new TestAnswer { Answer = "PEAR", IsCorrect = false, IsDisabled = false });
-            testQuestion.Answers.Add(new TestAnswer { Answer = "QUEEN", IsCorrect = false, IsDisabled = false });
-            testQuestion.Answers.Shuffle();
+            //testQuestion.Answers.Add(new TestAnswer { Answer = "BEE", IsCorrect = true, IsDisabled = false });
+            //testQuestion.Answers.Add(new TestAnswer { Answer = "DOOR", IsCorrect = false, IsDisabled = false });
+            //testQuestion.Answers.Add(new TestAnswer { Answer = "PEAR", IsCorrect = false, IsDisabled = false });
+            //testQuestion.Answers.Add(new TestAnswer { Answer = "QUEEN", IsCorrect = false, IsDisabled = false });
+            //testQuestion.Answers.Shuffle();
 
             return testQuestion;
             
