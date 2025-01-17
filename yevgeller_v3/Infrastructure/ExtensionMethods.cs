@@ -17,5 +17,13 @@
                 (list[i], list[j]) = (list[j], list[i]); // Swap elements
             }
         }
+
+        public static T RandomElement<T>(this List<T> list) where T : new () 
+        {
+            if (list.Count == 0)
+                return new T();
+            Random r = new Random();
+            return list.ElementAt(r.Next(0, list.Count - 1));
+        }
     }
 }

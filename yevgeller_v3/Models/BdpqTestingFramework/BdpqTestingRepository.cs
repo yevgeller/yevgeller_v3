@@ -8,6 +8,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         List<TestItem> TestItemsByCategory();
         List<TestItem> TestItemsByCategory(QuestionCategory category);
         List<TestItem> GetItemsForATest();
+        TestQuestion GenerateTestQuestion();
     }
     public class BdpqTestingRepository : IBdpqTestingRepository
     {
@@ -23,9 +24,33 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         public List<TestItem> TestItemsByCategory(QuestionCategory category) => itemsBank.Where(i => i.QuestionCategory == category).ToList();
         public List<TestItem> TestItemsByCategory() => itemsBank.Where(x => x.QuestionCategory == DefaultSelectedCategory).ToList();
         public List<TestItem> GetItemsForATest() => ItemsForATest;
-        
         public List<TestItem> ItemsForATest { get; set; } = new List<TestItem>();
 
+        public TestQuestion GenerateTestQuestion()
+        {
+            var items = new List<TestItem> {
+             TestItemsByCategory().Where(x => x.QuestionType == "b").ToList().RandomElement(),
+             TestItemsByCategory().Where(x => x.QuestionType == "d").ToList().RandomElement(),
+             TestItemsByCategory().Where(x => x.QuestionType == "p").ToList().RandomElement(),
+             TestItemsByCategory().Where(x => x.QuestionType == "q").ToList().RandomElement()
+                };
+
+            items.Shuffle();
+
+            Random r = new Random();
+            int correctPosition = r.Next(0, 4);
+
+            TestQuestion tq = new TestQuestion
+            {
+                Question = items.ElementAt(correctPosition).Question
+            };
+
+            for (int i = 0; i < items.Count(); i++)
+            {
+                tq.Answers.Add(new TestAnswer { Answer = items[i].AnswerWord, IsCorrect = i == correctPosition, IsDisabled = false });
+            }
+            return tq;
+        }
         private void GenerateAllTestItems()
         {
 

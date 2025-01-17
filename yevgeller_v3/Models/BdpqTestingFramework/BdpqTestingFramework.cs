@@ -35,7 +35,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
 
         public TestQuestion GetNextQuestion()
         {
-
+           
             testQuestion = new TestQuestion
             {
                 Question = "b",
@@ -49,6 +49,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
             testQuestion.Answers.Shuffle();
 
             return testQuestion;
+            
         }
 
         public TestQuestion ProcessAnswer(string answer)
@@ -93,7 +94,6 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         public string AnswerWord { get; set; } = "!"; //question
         public string HintIcon { get; set; } = "fa-question";
         public QuestionCategory QuestionCategory { get; set; }
-
         public string IconAsHtml() => "<i class='fas " + HintIcon + "'></i>";
         public override string ToString()
         {
