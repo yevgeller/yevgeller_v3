@@ -23,7 +23,7 @@
                         if (a.IsDisabled)
                         {
                             <button type="submit"
-                                    class="quiz-answer"
+                                    class="quiz-answer wrong"
                                     asp-page-handler="edit"
                                     asp-route-answer="@a.Answer"
                                     disabled>
@@ -91,7 +91,7 @@
 
     .custom-font {
         font-family: 'Patrick Hand', cursive;
-        font-size: xx-large;
+        font-size: 8rem;
     }
 
     .quiz-container {
@@ -104,7 +104,7 @@
     }
 
     .quiz-question {
-        font-size: 5rem; /* Larger font size for the question */
+        font-size: 8rem; /* Larger font size for the question */
         font-weight: bold;
         margin-bottom: 20px;
     }
@@ -131,9 +131,15 @@
             background-color: #e0e0e0;
         }
 
+
+    .wrong {
+        color: #D8A7A7;
+        text-decoration: line-through;
+    }
+
     button {
         margin-top: 20px;
         padding: 10px 20px;
-        font-size: 1rem;
+        font-size: 8rem;
     }
 </style>
