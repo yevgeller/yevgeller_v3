@@ -8,6 +8,7 @@ namespace yevgeller_v3.Pages
     {
         public readonly IBdpqTestingFramework repo;
         public TestQuestion tq = new();
+        public List<TestItemStatistic> stats = new List<TestItemStatistic>();
 
         public Test1Model(IBdpqTestingFramework repository)
         {
@@ -22,6 +23,7 @@ namespace yevgeller_v3.Pages
         public void OnPostEdit(string answer)
         {
             tq = repo.ProcessAnswer(answer);
+            stats = repo.GetTestItemStatistics().OrderBy(x => x.Item).ToList();
         }
     }
 }

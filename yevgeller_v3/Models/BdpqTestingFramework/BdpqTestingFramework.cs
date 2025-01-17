@@ -13,6 +13,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         List<TestItem> GetTestItemsForATest();
         TestQuestion GetNextQuestion();
         TestQuestion ProcessAnswer(string answer);
+        List<TestItemStatistic> GetTestItemStatistics();
         int GetQuestionCount();
     }
 
@@ -21,6 +22,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         private readonly IBdpqTestingRepository repository;
         private int count = 0;
         private TestQuestion testQuestion = new();
+        private List<TestItemStatistic> CurrentTestItemStatistics = new();
 
         public BdpqTestingFramework(IBdpqTestingRepository _repository)
         {
@@ -32,24 +34,11 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         public List<TestItem> GetTestItemsByCategory() => repository.TestItemsByCategory();
         public List<TestItem> GetTestItemsByCategory(QuestionCategory category) => repository.TestItemsByCategory(category);
         public List<TestItem> GetTestItemsForATest() => repository.GetItemsForATest();
-
+        public List<TestItemStatistic> GetTestItemStatistics() => CurrentTestItemStatistics;
         public TestQuestion GetNextQuestion()
         {
-           testQuestion = repository.GenerateTestQuestion();
-            //testQuestion = new TestQuestion
-            //{
-            //    Question = "b",
-            //    Answers = new()
-            //};
-
-            //testQuestion.Answers.Add(new TestAnswer { Answer = "BEE", IsCorrect = true, IsDisabled = false });
-            //testQuestion.Answers.Add(new TestAnswer { Answer = "DOOR", IsCorrect = false, IsDisabled = false });
-            //testQuestion.Answers.Add(new TestAnswer { Answer = "PEAR", IsCorrect = false, IsDisabled = false });
-            //testQuestion.Answers.Add(new TestAnswer { Answer = "QUEEN", IsCorrect = false, IsDisabled = false });
-            //testQuestion.Answers.Shuffle();
-
+            testQuestion = repository.GenerateTestQuestion();
             return testQuestion;
-            
         }
 
         public TestQuestion ProcessAnswer(string answer)
@@ -67,11 +56,30 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
                 throw new Exception($"No answer \"{answer}\" is found for this question");
 
             if (a.IsCorrect)
+            {
+                ProcessTestItemStatistic(testQuestion.Question, true);
                 testQuestion = GetNextQuestion();
+            }
             else
+            {
+                ProcessTestItemStatistic(testQuestion.Question, false);
                 a.IsDisabled = true;
-
+            }
             return testQuestion;
+        }
+
+        private void ProcessTestItemStatistic(string question, bool isCorrect)
+        {
+            var stat = this.CurrentTestItemStatistics.FirstOrDefault(x => x.Item == question);
+            if(stat == null)
+            {
+                CurrentTestItemStatistics.Add(new TestItemStatistic { Item = question, Total = 1, Incorrect = (isCorrect== true? 0 : 1) });
+            }
+            else
+            {
+                stat.Total++;
+                stat.Incorrect += (isCorrect ? 0 : 1);
+            }
         }
 
         public int GetQuestionCount() => count;
@@ -112,5 +120,12 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         public string Answer { get; set; } = string.Empty;
         public bool IsCorrect { get; set; } = false;
         public bool IsDisabled { get; set; } = false;
+    }
+
+    public class TestItemStatistic
+    {
+        public string Item { get; set; } = string.Empty;
+        public int Incorrect { get; set; }
+        public int Total { get; set; }
     }
 }

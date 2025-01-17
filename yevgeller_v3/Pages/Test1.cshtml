@@ -39,8 +39,10 @@
                 </div>
             </form>
             <table>
-                <tr><td>b 0/0</td><td>&nbsp;</td><td>d 0/0</td></tr>
-                <tr><td>p 0/0</td><td>&nbsp;</td><td>q 0/0</td></tr>
+                @foreach (var s in Model.stats)
+                {
+                    <tr><td>@s.Item: &nbsp;</td><td><span class="wrongStat">@s.Incorrect</span>/@s.Total</td></tr>
+                }
             </table>
         </div>
     </span>
@@ -97,6 +99,10 @@
     .wrong {
         color: #D8A7A7;
         text-decoration: line-through;
+    }
+
+    .wrongStat {
+        color: red;
     }
 
     button {
