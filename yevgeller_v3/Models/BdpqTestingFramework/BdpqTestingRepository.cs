@@ -62,10 +62,10 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
 
             var itemsByLetter = new Dictionary<string, string[]>
             {
-                { "b", new[] { "fa-book", "fa-bicycle", "fa-bread-slice" } },
-                { "d", new[] { "fa-door-open", "fa-drum", "fa-dog" } },
-                { "p", new[] { "fa-pencil-alt", "fa-pizza-slice", "fa-paper-plane" } },
-                { "q", new[] { "fa-question-circle", "fa-quidditch", "fa-qrcode" } }
+                { "b", new[] { "fa-book", "fa-baby", "fa-bath", "fa-bed", "fa-bell", "fa-box", "fa-brush", "fa-bug", "fa-bus", "fa-bacon" } },
+                { "d", new[] { "fa-door-open", "fa-drum", "fa-dog", "fa-dice", "fa-dollar-sign", "fa-dove", "fa-dragon", "fa-dot-circle" } },
+                { "p", new[] { "fa-pencil-alt", "fa-pizza-slice", "fa-paper-plane", "fa-pen", "fa-paw", "fa-phone", "fa-plug", "fa-plus", "fa-poop", "fa-puzzle-piece" } },
+                { "q", new[] { "fa-question-circle", "queen", "quick", "quiz", "quest", "question" } }
             };
 
             foreach (QuestionCategory category in categories)

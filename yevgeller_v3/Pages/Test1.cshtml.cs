@@ -19,11 +19,19 @@ namespace yevgeller_v3.Pages
         public void OnGet()
         {
             tq = repo.ProcessAnswer(string.Empty);
+            stats = repo.GetTestItemStatistics().OrderBy(x => x.Item).ToList();
         }
         public void OnPostEdit(string answer)
         {
             tq = repo.ProcessAnswer(answer);
             stats = repo.GetTestItemStatistics().OrderBy(x => x.Item).ToList();
+        }
+
+        public int TotalAnsweredQuestions()
+        {
+            if (stats == null) return 0;
+            if(stats.Count == 0) return 0;
+            return stats.Sum(x => x.Total);
         }
     }
 }

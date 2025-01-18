@@ -1,11 +1,22 @@
 ﻿@page
 @model yevgeller_v3.Pages.Test1Model
-@section FontAwesome {
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-}
+
 @{
-    <hr />
-    <span>Todo: Better words, replace quidditch, uppercase words in button </span>
+    <table>
+        <tr>
+            <td colspan="@(Model.stats.Count() * 2)">Total Answered: @Model.TotalAnsweredQuestions()</td>
+        </tr>
+        <tr>
+            @foreach (var s in Model.stats)
+            {
+                <td>@s.Item: &nbsp;</td>
+                <td>
+                    <span class="@(s.IsPerfect() == false ? "notQuite" : "")">@s.Correct</span>/@s.Total&nbsp;&nbsp;&nbsp;
+                </td>
+            }
+        </tr>
+    </table>
+
     <span class="custom-font">
 
         <div class="quiz-container">
@@ -23,7 +34,7 @@
                                     asp-page-handler="edit"
                                     asp-route-answer="@a.Answer"
                                     disabled>
-                                @a.Answer
+                                @a.Answer.ToUpper()
                             </button>
                         }
                         else
@@ -32,22 +43,19 @@
                                     class="quiz-answer"
                                     asp-page-handler="edit"
                                     asp-route-answer="@a.Answer">
-                                @a.Answer
+                                @a.Answer.ToUpper()
                             </button>
                         }
                     }
                 </div>
             </form>
-            <table>
-                @foreach (var s in Model.stats)
-                {
-                    <tr><td>@s.Item: &nbsp;</td><td><span class="@(s.IsPerfect() == false ? "notQuite" : "")">@s.Correct</span>/@s.Total</td></tr>
-                }
-            </table>
+
         </div>
     </span>
 }
-
+@section FontAwesome {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+}
 
 <style>
 
@@ -64,7 +72,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        margin-top: 50px;
+        /* margin-top: 50px; */
     }
 
     .quiz-question {

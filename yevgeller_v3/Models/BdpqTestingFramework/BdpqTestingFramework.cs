@@ -27,7 +27,20 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         public BdpqTestingFramework(IBdpqTestingRepository _repository)
         {
             this.repository = _repository;
+            InitializeStats();
             count = 0;
+        }
+
+        private void InitializeStats()
+        {
+            var distinctQuestionTypes = repository
+                .AllTestItems()
+                .Select(x => x.QuestionType)
+                .Distinct();
+            foreach (var questionType in distinctQuestionTypes)
+            {
+                CurrentTestItemStatistics.Add(new TestItemStatistic { Item = questionType });
+            }
         }
 
         public List<TestItem> GetTestItems() => repository.AllTestItems();
@@ -128,6 +141,6 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         public int Correct { get; set; }
         public int Total { get; set; }
 
-        public bool IsPerfect() => Correct == Total;
+        public bool IsPerfect() => Total == 0 || (double)Correct / (double)Total > 0.9;
     }
 }
