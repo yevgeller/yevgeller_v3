@@ -14,6 +14,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         TestQuestion GetNextQuestion();
         TestQuestion ProcessAnswer(string answer);
         List<TestItemStatistic> GetTestItemStatistics();
+        void ResetStatistics();
         int GetQuestionCount();
     }
 
@@ -33,6 +34,8 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
 
         private void InitializeStats()
         {
+            CurrentTestItemStatistics = new();
+
             var distinctQuestionTypes = repository
                 .AllTestItems()
                 .Select(x => x.QuestionType)
@@ -48,6 +51,7 @@ namespace yevgeller_v3.Models.BdpqTestingFramework
         public List<TestItem> GetTestItemsByCategory(QuestionCategory category) => repository.TestItemsByCategory(category);
         public List<TestItem> GetTestItemsForATest() => repository.GetItemsForATest();
         public List<TestItemStatistic> GetTestItemStatistics() => CurrentTestItemStatistics;
+        public void ResetStatistics() => InitializeStats();
         public TestQuestion GetNextQuestion()
         {
             testQuestion = repository.GenerateTestQuestion();

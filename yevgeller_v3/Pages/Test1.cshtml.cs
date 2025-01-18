@@ -27,6 +27,12 @@ namespace yevgeller_v3.Pages
             stats = repo.GetTestItemStatistics().OrderBy(x => x.Item).ToList();
         }
 
+        public void OnPostReset()
+        {
+            repo.ResetStatistics();
+            tq = repo.ProcessAnswer(string.Empty);
+        }
+
         public int TotalAnsweredQuestions()
         {
             if (stats == null) return 0;
