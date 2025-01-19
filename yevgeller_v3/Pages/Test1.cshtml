@@ -2,55 +2,56 @@
 @model yevgeller_v3.Pages.Test1Model
 
 @{
-    <table>
-        <tr>
-            <td colspan="@(Model.stats.Count() * 2)">Total Answered: @Model.TotalAnsweredQuestions()</td>
-        </tr>
-        <tr>
+         <div class="stats-table">
+            <div class="stats-row">
+                <div class="stats-total">Total Answered: @Model.TotalAnsweredQuestions()</div>
+            </div>
+            <div class="stats-row">
             @foreach (var s in Model.stats)
             {
-                <td>@s.Item: &nbsp;</td>
-                <td>
-                    <span class="@(s.IsPerfect() == false ? "notQuite" : "")">@s.Correct</span>/@s.Total&nbsp;&nbsp;&nbsp;
-                </td>
+                        <div class="stats-item">@s.Item:</div>
+                        <div class="stats-score">
+                            <span class="@(s.IsPerfect() == false ? "notQuite" : "")">@s.Correct</span> / @s.Total
+                        </div>
             }
-        </tr>
-    </table>
+            </div>
+        </div>
 
     <span class="custom-font">
 
-        <div class="quiz-container">
-            <div class="quiz-question">
-                @Model.tq.Question
-            </div>
-            <form asp-page-handler="edit" method="post">
-                <div class="quiz-answers">
+    <div class="quiz-container">
+        <div class="quiz-question">
+            @Model.tq.Question
+        </div>
+        <form asp-page-handler="edit" method="post">
+            <div class="quiz-answers">
                     @foreach (var a in Model.tq.Answers)
                     {
                         if (a.IsDisabled)
                         {
-                            <button type="submit"
-                                    class="quiz-answer wrong"
-                                    asp-page-handler="edit"
-                                    asp-route-answer="@a.Answer"
-                                    disabled>
+                                        <button type="submit"
+                                                class="quiz-answer wrong"
+                                                asp-page-handler="edit"
+                                                asp-route-answer="@a.Answer"
+                                                disabled>
                                 @a.Answer.ToUpper()
-                            </button>
+                                        </button>
                         }
                         else
                         {
-                            <button type="submit"
-                                    class="quiz-answer"
-                                    asp-page-handler="edit"
-                                    asp-route-answer="@a.Answer">
+                                        <button type="submit"
+                                                class="quiz-answer"
+                                                asp-page-handler="edit"
+                                                asp-route-answer="@a.Answer">
                                 @a.Answer.ToUpper()
-                            </button>
+                                        </button>
                         }
                     }
-                </div>
-                    <button type="submit" class="resetStatsButton" asp-page-handler="reset">Reset</button>
-            </form>           
-        </div>
+            </div>
+            <button type="submit" class="resetStatsButton" asp-page-handler="reset">Reset</button>
+        </form>
+    </div>
+      
     </span>
 }
 @section FontAwesome {
@@ -59,69 +60,142 @@
 
 <style>
 
+   
+    /* Import custom font */
     @@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
-    .custom-font {
-        font-family: 'Patrick Hand', cursive;
-        font-size: 8rem;
-    }
+/* Global styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 16px; /* Base font size for scaling */
+    line-height: 1.5;
+    box-sizing: border-box;
+}
 
-    .quiz-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        /* margin-top: 50px; */
-    }
+/* Responsive container for stats */
+.stats-table {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stats-total {
+    font-weight: bold;
+}
+
+.stats-item, .stats-score {
+    text-align: center;
+}
+
+/* Quiz container styles */
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+}
+
+.quiz-question {
+    font-size: 2rem; /* Scaled for smaller screens */
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.quiz-answer {
+    padding: 15px 25px; /* Increase padding for a larger button */
+    font-size: 1.5rem; /* Increase font size for text readability */
+    border-radius: 10px; /* Optional: rounder corners for aesthetics */
+    width: 100%; /* Optional: make buttons take full width within their container */
+    max-width: 300px; /* Optional: set a maximum width */
+}
+
+.quiz-answers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    width: 100%;
+    justify-items: center;
+}
+
+.quiz-answer {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    padding: 15px 25px; /* Increase padding for a larger button */
+    font-size: 1.5rem; /* Increase font size for text readability */
+    border-radius: 10px; /* Optional: rounder corners for aesthetics */
+    width: 100%; /* Optional: make buttons take full width within their container */
+    max-width: 300px; /* Optional: set a maximum width */
+}
+
+.quiz-answer:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+}
+
+.quiz-answer.wrong {
+    color: #D8A7A7;
+}
+
+.notQuite {
+    color: yellow;
+}
+
+.resetStatsButton {
+    margin-top: 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    padding: 15px 25px; /* Similar to quiz-answer for consistency */
+    font-size: 1.5rem; /* Larger text */
+    border-radius: 10px; /* Rounder corners */
+}
+
+.resetStatsButton:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive styles */
+    @@media (max-width: 768px) {
     .quiz-question {
-        font-size: 8rem; /* Larger font size for the question */
-        font-weight: bold;
-        margin-bottom: 20px;
+        font-size: 1.5rem;
     }
 
-    .quiz-answers {
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* Two columns */
-        gap: 20px; /* Space between answer buttons */
-    }
-
-    .quiz-answer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
-
-        .quiz-answer:hover {
-            background-color: #e0e0e0;
-        }
-
-
-    .wrong {
-        color: #D8A7A7;
-        /* text-decoration: line-through; */
-    }
-
-    .notQuite {
-        color: yellow;
-    }
-
-    button {
-        margin-top: 20px;
-        padding: 10px 20px;
-        font-size: 8rem;
-    }
-
+    .quiz-answer,
     .resetStatsButton {
-        margin-top: 50px;
-        font-size:1rem;
-        padding: 5px 5px;
+        padding: 10px 20px;
+        font-size: 1.2rem;
     }
+}
+
+    @@media (max-width: 480px) {
+    .quiz-question {
+        font-size: 1.2rem;
+    }
+
+    .quiz-answer,
+    .resetStatsButton {
+        padding: 8px 15px;
+        font-size: 1rem;
+    }
+}
+
 </style>
