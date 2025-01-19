@@ -2,65 +2,68 @@
 @model yevgeller_v3.Pages.Test1Model
 
 @{
-         <div class="stats-table">
-            <div class="stats-row">
-                <div class="stats-total">Total Answered: @Model.TotalAnsweredQuestions()</div>
-            </div>
-            <div class="stats-row">
+             <div class="stats-table">
+                <div class="stats-row">
+                    <div class="stats-total">Total Answered: @Model.TotalAnsweredQuestions()</div>
+                </div>
+                <div class="stats-row">
             @foreach (var s in Model.stats)
             {
-                        <div class="stats-item">@s.Item:</div>
-                        <div class="stats-score">
-                            <span class="@(s.IsPerfect() == false ? "notQuite" : "")">@s.Correct</span> / @s.Total
-                        </div>
+                                <div class="stats-item">@s.Item:</div>
+                                <div class="stats-score">
+                                    <span class="@(s.IsPerfect() == false ? "notQuite" : "")">@s.Correct</span> / @s.Total
+                                </div>
             }
+                </div>
             </div>
-        </div>
 
-    <span class="custom-font">
+        <span class="custom-font">
 
-    <div class="quiz-container">
-        <div class="quiz-question">
-            @Model.tq.Question
-        </div>
-        <form asp-page-handler="edit" method="post">
-            <div class="quiz-answers">
+        <div class="quiz-container">
+            <div class="quiz-question">
+                @Model.tq.Question
+            </div>
+            <form asp-page-handler="edit" method="post">
+                <div class="quiz-answers">
                     @foreach (var a in Model.tq.Answers)
                     {
                         if (a.IsDisabled)
                         {
-                                        <button type="submit"
-                                                class="quiz-answer wrong"
-                                                asp-page-handler="edit"
-                                                asp-route-answer="@a.Answer"
-                                                disabled>
+                                                    <button type="submit"
+                                                            class="quiz-answer wrong"
+                                                            asp-page-handler="edit"
+                                                            asp-route-answer="@a.Answer"
+                                                            disabled>
                                 @a.Answer.ToUpper()
-                                        </button>
+                                                    </button>
                         }
                         else
                         {
-                                        <button type="submit"
-                                                class="quiz-answer"
-                                                asp-page-handler="edit"
-                                                asp-route-answer="@a.Answer">
+                                                    <button type="submit"
+                                                            class="quiz-answer"
+                                                            asp-page-handler="edit"
+                                                            asp-route-answer="@a.Answer">
                                 @a.Answer.ToUpper()
-                                        </button>
+                                                    </button>
                         }
                     }
-            </div>
+                </div>
+
+                    <div class="reset-container">
             <button type="submit" class="resetStatsButton" asp-page-handler="reset">Reset</button>
-        </form>
-    </div>
-      
-    </span>
+        </div>
+                </form>
+        </div>
+
+        </span>
 }
 @section FontAwesome {
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 }
 
 <style>
 
-   
+
     /* Import custom font */
     @@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
@@ -125,8 +128,8 @@ body {
 
 .quiz-answers {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns of equal width */
+    gap: 20px;
     width: 100%;
     justify-items: center;
 }
@@ -141,6 +144,8 @@ body {
     border-radius: 10px; /* Optional: rounder corners for aesthetics */
     width: 100%; /* Optional: make buttons take full width within their container */
     max-width: 300px; /* Optional: set a maximum width */
+    color:navy;
+    text-align:center;
 }
 
 .quiz-answer:hover {
@@ -156,21 +161,32 @@ body {
     color: yellow;
 }
 
+/* Center Reset Button */
 .resetStatsButton {
-    margin-top: 20px;
-    background-color: #007BFF;
-    color: white;
+    display: inline-block; /* Ensure it's treated as a block-level element for proper alignment */
+    margin: 20px auto; /* Center horizontally with auto margins */
+    padding: 10px 20px; /* Add padding for better clickability */
+    font-size: 1.2rem; /* Adjust font size */
+    text-align: center;
+    background-color: #007BFF; /* Button color */
+    color: white; /* Text color */
     border: none;
+    border-radius: 5px; /* Rounded corners */
     cursor: pointer;
-    transition: background-color 0.2s;
-
-    padding: 15px 25px; /* Similar to quiz-answer for consistency */
-    font-size: 1.5rem; /* Larger text */
-    border-radius: 10px; /* Rounder corners */
+    transition: background-color 0.3s ease;
 }
 
 .resetStatsButton:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Ensure container centers content */
+.reset-container {
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    margin-top: 20px; /* Add spacing from previous elements */
+    flex-direction: column; /* Stack items if needed */
 }
 
 /* Responsive styles */
@@ -187,6 +203,9 @@ body {
 }
 
     @@media (max-width: 480px) {
+         .quiz-answers {
+        grid-template-columns: 1fr;
+         }
     .quiz-question {
         font-size: 1.2rem;
     }
